@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 
+from time import strftime
 from drivers import Drivers
 import json
 import os
@@ -54,6 +55,7 @@ class Task:
 
         # Construct the request body.
         task = {
+            'name': '{}/tasks/pull-request-{:08d}-at-{}'.format(parent, payload['mr_id'], strftime('%H%M%S')),
             'http_request': {  # Specify the type of request.
                 'http_method': 'POST',
                 'url': url,  # The full url path that the task will be sent to.
